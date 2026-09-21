@@ -23,7 +23,7 @@ class ViewTask(View):
         }
         return JsonResponse(obj)
 
-def post(self, request):
+    def post(self, request):
         raw_json = request.body
         new_data = loads(raw_json)
 
@@ -38,7 +38,7 @@ def post(self, request):
             )
 
 
-
+@method_decorator(csrf_exempt, 'dispatch')
 class ViewTag(View):
     def get(self, request):
         tags = Tag.objects.all()
@@ -66,7 +66,7 @@ def post(self, request):
                 status=400
             )
 
-
+@method_decorator(csrf_exempt, 'dispatch')
 class ViewTaskTag(View):
     def get(self, request):
         task_tags = TaskTag.objects.all()

@@ -44,7 +44,7 @@ class ViewTask(View):
     def patch(self, request, pk):
         original = get_object_or_404(Task, pk=pk)
         new_data = loads(request.body)
-        form = TaskForm(new_data, instance=original, partial=True)
+        form = TaskForm(new_data, instance=original)
         if form.is_valid():
             form.save()
             return JsonResponse({'status': 'ok'})
@@ -89,7 +89,7 @@ class ViewTag(View):
     def patch(self, request, pk):
         original = get_object_or_404(Tag, pk=pk)
         new_data = loads(request.body)
-        form = TagForm(new_data, instance=original, partial=True)
+        form = TagForm(new_data, instance=original)
         if form.is_valid():
             form.save()
             return JsonResponse({'status': 'ok'})
@@ -135,7 +135,7 @@ class ViewTaskTag(View):
     def patch(self, request, pk):
         original = get_object_or_404(TaskTag, pk=pk)
         new_data = loads(request.body)
-        form = TaskTagForm(new_data, instance=original, partial=True)
+        form = TaskTagForm(new_data, instance=original)
         if form.is_valid():
             form.save()
             return JsonResponse({'status': 'ok'})
